@@ -1,4 +1,4 @@
-package ro.bogdancoseru.ecommercerestapi.service;
+package ro.bogdancoseru.ecommercerestapi.service.user;
 
 import ro.bogdancoseru.ecommercerestapi.entity.user.User;
 

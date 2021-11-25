@@ -1,4 +1,4 @@
-package ro.bogdancoseru.ecommercerestapi.service;
+package ro.bogdancoseru.ecommercerestapi.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.bogdancoseru.ecommercerestapi.dto.user.UserDto;
 import ro.bogdancoseru.ecommercerestapi.entity.user.User;
 import ro.bogdancoseru.ecommercerestapi.security.JwtTokenService;
-import ro.bogdancoseru.ecommercerestapi.service.UserService;
+import ro.bogdancoseru.ecommercerestapi.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;

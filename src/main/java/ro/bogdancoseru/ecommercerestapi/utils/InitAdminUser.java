@@ -9,8 +9,8 @@ import ro.bogdancoseru.ecommercerestapi.entity.user.Role;
 import ro.bogdancoseru.ecommercerestapi.entity.user.RoleName;
 import ro.bogdancoseru.ecommercerestapi.entity.user.User;
 import ro.bogdancoseru.ecommercerestapi.entity.user.UserDetails;
-import ro.bogdancoseru.ecommercerestapi.service.RoleService;
-import ro.bogdancoseru.ecommercerestapi.service.UserService;
+import ro.bogdancoseru.ecommercerestapi.service.user.RoleService;
+import ro.bogdancoseru.ecommercerestapi.service.user.UserService;
 import java.util.Optional;
 
 @Component

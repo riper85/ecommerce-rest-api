@@ -65,14 +65,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                // dont authenticate this particular request
-                .authorizeRequests()
-                .antMatchers("/").not().hasAuthority(RoleName.ROLE_ADMIN.toString())
-                .antMatchers("/auth/token").permitAll()
-                .antMatchers("/auth/**").hasAuthority(RoleName.ROLE_ADMIN.toString())
-                // all other requests need to be authenticated
-               // anyRequest().authenticated()
-                ;
+                    // dont authenticate this particular request
+                    .authorizeRequests()
+                    .antMatchers("/*").denyAll()
+                    //.antMatchers("/").not().hasAuthority(RoleName.ROLE_ADMIN.toString())
+                    .antMatchers("/products/**").authenticated()
+                    .antMatchers("/auth/token").permitAll()
+                    .antMatchers("/auth/**").hasAuthority(RoleName.ROLE_ADMIN.toString())
+                    // all other requests need to be authenticated
+                .anyRequest().authenticated();
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

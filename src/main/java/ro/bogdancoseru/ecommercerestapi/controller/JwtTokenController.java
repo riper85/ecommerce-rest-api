@@ -20,8 +20,8 @@ import ro.bogdancoseru.ecommercerestapi.dto.user.*;
 import ro.bogdancoseru.ecommercerestapi.entity.user.Role;
 import ro.bogdancoseru.ecommercerestapi.entity.user.User;
 import ro.bogdancoseru.ecommercerestapi.security.JwtTokenService;
-import ro.bogdancoseru.ecommercerestapi.service.RoleService;
-import ro.bogdancoseru.ecommercerestapi.service.UserService;
+import ro.bogdancoseru.ecommercerestapi.service.user.RoleService;
+import ro.bogdancoseru.ecommercerestapi.service.user.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
