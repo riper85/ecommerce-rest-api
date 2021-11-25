@@ -1,0 +1,55 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: development
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: postgres
+    password: februarie0202
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    open-in-view: false
+    generate-ddl: false
+  flyway:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    user: postgres
+    password: februarie0202
+    locations: classpath:db
+    baseline-on-migrate: true
+  security:
+    user:
+      name: postgres
+      password: februarie0202
+# Logger configuration
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  level:
+    org.springframework: WARN
+    org.hibernate: WARN
+  file:
+    name: app.log
+# Server configuration
+server:
+  port: 8080
+  sessionTimeout: 30
+# security toggle
+ecommerce:
+  security:
+    enable: true
+jwt:
+  secret: JWTSuperSecretKey
+  expiration: 3600
+  header: Authorization
+  route:
+    authentication:
+      path: "/auth"
+      refresh: "/refresh"
