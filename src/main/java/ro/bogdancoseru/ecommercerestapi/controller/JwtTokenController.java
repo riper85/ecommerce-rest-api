@@ -42,7 +42,7 @@ public class JwtTokenController {
     private final UserService userService;
 
     @PostMapping(value = "/token")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginUserDto authenticationRequest) throws Exception {
+    public ResponseEntity<JwtAuthResponseDto> createAuthenticationToken(@RequestBody LoginUserDto authenticationRequest) throws Exception {
 
         final Authentication auth = authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -53,7 +53,7 @@ public class JwtTokenController {
 
     @PostMapping(value = "/register")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> saveUser(@RequestBody @Valid RegisterUserDto registerUserDto) throws Exception {
+    public ResponseEntity<UserDto> addUser(@RequestBody @Valid RegisterUserDto registerUserDto) throws Exception {
 
         ModelMapper modelMapper = new ModelMapper();
         User newUser = modelMapper.map(registerUserDto, User.class);
@@ -66,14 +66,12 @@ public class JwtTokenController {
 
         userService.saveUser(newUser);
 
-        UserDto userDto = modelMapper.map(newUser, UserDto.class);
-
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(modelMapper.map(newUser, UserDto.class));
     }
 
     @GetMapping(value = "/listusers", produces = "application/json")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> listUsers() {
+    public ResponseEntity<ListUsersDto> listUsers() {
 
         List<User> users = userService.getAllUsers();
         ModelMapper modelMapper = new ModelMapper();
@@ -87,7 +85,7 @@ public class JwtTokenController {
 
     @DeleteMapping(value = "/delete", produces = "application/json")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> deleteUser(@RequestParam(value = "username") String username) {
+    public ResponseEntity<String> deleteUser(@RequestParam(value = "username") String username) {
 
         Optional<User> user = userService.findUserByEmail(username);
         log.warn(username);
@@ -100,7 +98,6 @@ public class JwtTokenController {
             } catch (StaleStateException exception) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Something went wrong!");
             }
-
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
